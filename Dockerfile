@@ -22,8 +22,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy application code and frontend build
 COPY *.py .
+COPY static/ static/
 
 # Create data directories
 # On HuggingFace Spaces with persistent storage, /data is mounted automatically.
