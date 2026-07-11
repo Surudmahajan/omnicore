@@ -242,7 +242,7 @@ def _generate_fallback_blueprint(
 
     api_key_placeholder = "YOUR_OMNICORE_API_KEY"
     first_slug = matched_datasets[0].slug if matched_datasets else "world-countries"
-    base_url = "https://your-backend.hf.space"
+    base_url = "https://omnicoreapi.onrender.com"
 
     return {
         "project_type": user_input[:80],
@@ -577,9 +577,11 @@ def execute_console(body: ConsoleRequest, db: Session = Depends(get_db)):
     start = time.perf_counter()
 
     # Make internal HTTP request
+    import os
     try:
         with httpx.Client(timeout=30) as client:
-            url = f"http://localhost:8000{body.endpoint}"
+            port = os.getenv("PORT", 8000)
+            url = f"http://127.0.0.1:{port}{body.endpoint}"
             resp = client.get(
                 url,
                 params=body.params or {},
@@ -614,7 +616,7 @@ def execute_console(body: ConsoleRequest, db: Session = Depends(get_db)):
 
 def _generate_code_snippets(endpoint: str, api_key: str, params: Optional[dict]) -> dict:
     """Generate ready-to-use code snippets for the API Console."""
-    base_url = "https://your-backend.hf.space"
+    base_url = "https://omnicoreapi.onrender.com"
     display_key = api_key[:12] + "..."
     param_str = "&".join(f"{k}={v}" for k, v in (params or {}).items())
     full_url = f"{base_url}{endpoint}" + (f"?{param_str}" if param_str else "")
