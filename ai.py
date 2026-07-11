@@ -576,12 +576,10 @@ def execute_console(body: ConsoleRequest, db: Session = Depends(get_db)):
 
     start = time.perf_counter()
 
-    # Make internal HTTP request
-    import os
+    # Make HTTP request directly to public URL to bypass Render loopback issues
     try:
         with httpx.Client(timeout=30) as client:
-            port = os.getenv("PORT", 8000)
-            url = f"http://127.0.0.1:{port}{body.endpoint}"
+            url = f"https://omnicoreapi.onrender.com{body.endpoint}"
             resp = client.get(
                 url,
                 params=body.params or {},
