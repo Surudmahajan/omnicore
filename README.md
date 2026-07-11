@@ -87,7 +87,7 @@ OmniCore solves the massive pain point of data fragmentation and infrastructure 
 
 ## 📽️ Demo & Deliverables
 
-- **Demo Video Link:** [Paste YouTube/Loom link here]  
+- **Demo Video Link:** https://www.youtube.com/watch?v=CcX74pM7mKk  
 - **Deployment Link:** https://omnicoreapi.onrender.com/  
 - **Pitch Deck / PPT:** https://docs.google.com/presentation/d/1k9hRmF5PYDjuakDDoY9-CxIm775J-XopxZ6ooEGPqcc/
 
